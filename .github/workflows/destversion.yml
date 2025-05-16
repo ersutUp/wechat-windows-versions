@@ -26,13 +26,12 @@ jobs:
         env: 
           GHTOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash -x ./scripts/destVersionRelease.sh ${{ github.event.inputs.download_link }}
-      - name : SET ENV
-        run: |
-          echo "NEW_VERSION=${{ steps.checker.outputs.NEW_VERSION }}" >> $GITHUB_ENV 
-          echo "SKIP_BUILD=${{ steps.checker.outputs.SKIP_BUILD }}" >> $GITHUB_ENV 
+    outputs:
+      NEW_VERSION: ${{ steps.checker.outputs.NEW_VERSION }}
+      SKIP_BUILD: ${{ steps.checker.outputs.SKIP_BUILD }}
   docker_build: 
     needs: save_new_wechat
-    if: env.SKIP_BUILD != 'true'
+    if: needs.save_new_wechat.outputs.SKIP_BUILD != 'true'
     uses: ./.github/workflows/docker-image-wine-wechat.yml
     with:
-      wechat_version: ${{ env.NEW_VERSION }}
+      wechat_version: ${{ needs.save_new_wechat.outputs.NEW_VERSION }}
