@@ -21,6 +21,7 @@ jobs:
         id: checker
         env: 
           GHTOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
         run: bash -x ./scripts/destVersionRelease.sh ${{ github.event.inputs.download_link }}
     outputs:
       NEW_VERSION: ${{ steps.checker.outputs.NEW_VERSION }}

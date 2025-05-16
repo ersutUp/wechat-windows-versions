@@ -87,6 +87,7 @@ function prepare_commit() {
     echo "DestVersion: $dest_version" > WeChatSetup/$dest_version/WeChatSetup-$dest_version.exe.sha256
     echo "Sha256: $now_sum256" >> WeChatSetup/$dest_version/WeChatSetup-$dest_version.exe.sha256
     echo "UpdateTime: $(date -u '+%Y-%m-%d %H:%M:%S') (UTC)" >> WeChatSetup/$dest_version/WeChatSetup-$dest_version.exe.sha256
+    echo "Docker: docker pull ghcr.io/$OWNER/wine-wechat:v$dest_version" > WeChatSetup/$dest_version/WeChatSetup-$dest_version.exe.sha256
     echo "DownloadFrom: $download_link" >> WeChatSetup/$dest_version/WeChatSetup-$dest_version.exe.sha256
     
 }
