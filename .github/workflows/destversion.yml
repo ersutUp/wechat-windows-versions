@@ -10,10 +10,6 @@ on:
         required: false
         default: 'https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe'
 
-env:
-  NEW_VERSION: '3.9.12.51'
-  SKIP_BUILD: 'true'
-
 jobs:
   save_new_wechat:
     runs-on: ubuntu-latest
