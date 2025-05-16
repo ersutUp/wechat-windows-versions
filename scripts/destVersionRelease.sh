@@ -115,6 +115,7 @@ function main() {
 
     if [ "$now_sum256" = "$latest_sum256" ]; then
         >&2 echo -e "\n\033[1;32mThis is the newest Version!\033[0m\n"
+        echo "SKIP_BUILD=true" >> $GITHUB_OUTPUT
         clean_data 0
     fi
     ## if not the newest
@@ -127,6 +128,8 @@ function main() {
 
     gh auth logout --hostname github.com | echo "y"
 
+    echo "NEW_VERSION=$dest_version" >> $GITHUB_OUTPUT
+    echo "SKIP_BUILD=false" >> $GITHUB_OUTPUT
     clean_data 0
 }
 

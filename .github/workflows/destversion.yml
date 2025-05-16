@@ -18,6 +18,12 @@ jobs:
       # - name: Test Github Action Server Time
       #   run: echo `date`
       - name: Check new version and push
+        id: checker
         env: 
           GHTOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash -x ./scripts/destVersionRelease.sh ${{ github.event.inputs.download_link }}
+      - name: docker build
+        if: steps.checker.outputs.SKIP_BUILD != 'true'
+        uses: ./.github/workflows/docker-image-wine-wechat.yml
+        with:
+          wechat_version: ${{ steps.checker.outputs.NEW_VERSION }}
