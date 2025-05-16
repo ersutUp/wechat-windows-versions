@@ -1,3 +1,27 @@
+**在原项目上添加了 将微信打包到 docker镜像内 并使用 wine运行起来。**
+
+docker 命令
+```shell
+docker pull ghcr.io/ersutup/wine-wechat:latest
+```
+或者
+
+```shell
+#docker pull ghcr.io/ersutup/wine-wechat:v微信版本
+docker pull ghcr.io/ersutup/wine-wechat:v3.9.12.51
+```
+
+参考项目
+https://github.com/ChisBread/wechat-box
+
+## 目前存在的问题
+- 黑边
+- emoji不显示
+
+enmmm 看做什么用吧，这俩问题不影响我使用
+
+
+
 # wechat-windows-versions
 收集 Windows 微信版本并保存
 
